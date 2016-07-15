@@ -1,20 +1,61 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-       
-        <script>
-            $.cookie('firstName', 'Glenn');
-            var firstName = $.cookie('firstName');
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script>
+        //use JQuery
+        $.cookie('firstName', 'Glenn');
+        var firstName = $.cookie('firstName');
+
+        //alert(firstName);
+    </script>
+
+
+</head>
+<body>
+    <input type="text" id="firstName" value="fattaneh" />
+    <script>
+
+        try {
+
+            //Use localstorage object
+
+            //function isWebStorageSupported() {
+            //    return 'localStorage' in window;
+            //}
+
+            //if (isWebStorageSupported()) {
+            //    localStorage.setItem('firstName', $('#firstName').val());
+            //}
+            if (Modernizr.localstorage) {
+                localStorage.setItem('firstName', $('#firstName').val());
+            }
+
+            //getitem from web storage
+            var firstName = localStorage.getItem('firstName');
 
             alert(firstName);
-        </script>
-    </head>
-    <body>
-        
-    </body>
+            //store complex data
+            var person = { firstName: 'Fattaneh', lastName: 'Ameri' };
+            localStorage.setItem('Fattaneh', JSON.stringify(person));
+
+            var person = JSON.parse(localStorage.getItem('Fattaneh'));
+
+
+        } catch (e) {
+            if (e.name = QuotaExceededError) {
+                alert('If the storage limit is reached, or if the user manually turns off storage capabilities, a');
+            }
+        }
+
+    </script>
+
+</body>
 </html>
